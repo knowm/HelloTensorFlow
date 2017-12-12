@@ -95,7 +95,7 @@ tensorboard --logdir=/tmp/cifar10_train
 
 Open [http://localhost:6006](http://localhost:6006) in browser to view tensorboard.
 
-![](_img/CFAR_CPU_MACOS_TENSORBOARD.png)
+![](_img/CIFAR_CPU_MACOS_TENSORBOARD.png)
 
 After training and monitoring on tensorboard:
  
