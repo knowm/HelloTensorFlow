@@ -40,7 +40,7 @@ Logistic Regression is like Linear Regression except it allows you to classify t
 1. [Logistic Regression](https://crsmithdev.com/blog/ml-logistic-regression/)
 1. [Gentlest Intro to Tensorflow #4: Logistic Regression](https://medium.com/all-of-us-are-belong-to-machines/gentlest-intro-to-tensorflow-4-logistic-regression-2afd0cabc54)
 
-### A note on calculating madel accuracy
+### A note on calculating model accuracy
 
 Here is the "testing" code from the above example:
 
