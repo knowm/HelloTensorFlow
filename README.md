@@ -2,9 +2,25 @@
 
 This project aims to be a collection of notes, links, code snippets and mini-guides to teach you how to get Tensorflow up and running on MacOS (CPU only), Windows 10 (CPU and GPU) and Linux (work in progress) with zero experience in Tensorflow and little or no background in Python. It also runs through some basic machine learning code and concepts and focuses on specific details of TensorFlow as they are seen for the first time. This project assumes you are familiar with the command line, git and the most common developer tools of your chosen operating system. The code samples can be run in the console as is the most common scenario, but I also show how to set up Eclipse and the PyDev developer environment for Python motivated by my need for a cross platform IDE with code highlighting and other helpful IDE tools.
 
-Many of the code examples have been taken from other Internet resources and credit is always given. I welcome pull requests for corrections, updates or additional tips, etc. 
+Many of the code examples have been taken from other Internet resources and credit is always given. We welcome pull requests for corrections, updates or additional tips, etc. 
+
+## Pre-requisites
 
 Before walking through this README, take the time to read the `Dev4Windows.md` or `Dev4MacOS.md` to get things setup and installed and make sure you can successfully run `hellopy.py` and `hellotf.py` as well as some examples from the Tensorflow/models repo from the command line as well as from within Eclipse.
+
+### MacOS
+
+1. Dev4MacOS.md
+1. CompileTF4MacOS.md
+
+### Windows 10
+
+1. Dev4Windows.md
+
+### Linux
+
+TODO
+
 
 ## TF Walkthrough
 

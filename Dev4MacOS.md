@@ -71,6 +71,13 @@ sess.close()
 2017-11-17 10:33:55.587192: W tensorflow/core/platform/cpu_feature_guard.cc:45] The TensorFlow library wasn't compiled to use FMA instructions, but these are available on your machine and could speed up CPU computations.
 b'Hello, World'
 ```
+
+## Some Possible Issues
+
+1. `AttributeError: module 'enum' has no attribute 'IntFlag'` ==> run ` pip3 uninstall enum34`
+1. `RuntimeWarning: compiletime version 3.5 of module 'tensorflow.python.framework.fast_tensor_util' does not match runtime version 3.6` ==> Just igmore the warning
+1. `Your CPU supports instructions that this TensorFlow binary was not compiled to use: SSE4.1 SSE4.2 AVX AVX2 FMA` ==> You need to compile TF yourself with the appropriate flags to leverage advanced CPU instructions. Just ignore.
+
 ## MNIST from `Tensorflow/models`
 
 ```
