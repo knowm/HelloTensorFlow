@@ -18,6 +18,7 @@
 #   (https://goo.gl/Ujm2Ep)
 
 import os
+import csv
 
 import six.moves.urllib.request as request
 import tensorflow as tf
@@ -111,65 +112,29 @@ accuracy_score = classifier.evaluate(input_fn=lambda: my_input_fn(FILE_TEST, Fal
 print("\nTest Accuracy: {0:f}\n".format(accuracy_score))
 
 
-# labels = my_input_fn(FILE_TEST, False, 1)[-1]
-# predictions = list(classifier.predict(input_fn=lambda: my_input_fn(FILE_TEST, False, 1)))
-# confusion_matrix = tf.confusion_matrix(labels, predictions)
-
-
 predictions = list(classifier.predict(input_fn=lambda: my_input_fn(FILE_TEST, False, 1)))
-print(
-    "Test Samples, Raw Predictions:    {}\n"
-    .format(predictions))
+# print(
+#     "Test Samples, Raw Predictions:    {}\n"
+#     .format(predictions))
 
-# predicted_classes = [p["classes"][0] for p in predictions]
+
 predicted_classes = [p["class_ids"][0] for p in predictions]
 print(
     "Test Samples, Class Predictions:    {}\n"
     .format(predicted_classes))
 
-labels = []
-for line in open(FILE_TEST):
-#     print(line)
-    parsed_line = tf.decode_csv(line, [[0.], [0.], [0.], [0.], [0]])
-    label = parsed_line[-1]  # Last element is the label
-#     print(label)
-    labels.append(label)
-labels = labels[1:]
+# truth labels
+with open(FILE_TEST,'r') as f:
+    lines = f.readlines()[1:]
+    reader = csv.reader(lines, delimiter=',')
+    truth_labels = [int(row[-1]) for row in reader]
 print(
-    "Test Samples, Truth Labels:    {}\n"
-    .format(labels))
+    "Test Samples, Class Truth Labels:    {}\n"
+    .format(truth_labels))
 
-# labels = my_input_fn(FILE_TEST, False, 1)
-# print(
-#     "Test Samples, Truth Labels:    {}\n"
-#     .format(labels))
-
-
-# Confusion Matirx
 with tf.Session() as sess:
-    confusion_matrix = tf.confusion_matrix(labels, predicted_classes,3)
+    confusion_matrix = tf.confusion_matrix(labels=truth_labels, predictions=predicted_classes, num_classes=3)
     confusion_matrix_to_Print = sess.run(confusion_matrix)
-# print(first_batch_to_Print)   
-# tf.Print(confusion_matrix, [confusion_matrix])
-print(confusion_matrix_to_Print.eval()) 
-
-# confusion_matrix = tf.confusion_matrix(labels, predicted_classes,3)
-# tf.Print(confusion_matrix, [confusion_matrix])
-# for i in range(confusion_matrix.shape[0].value):
-#     for j in range(confusion_matrix.shape[1].value):
-#         tf.Print(confusion_matrix[i][j])
-#     print()
-# tf.Print(confusion_matrix)
-
-
-
-
-
-
-# # Print out some data using a Session
-# next_batch = my_input_fn(FILE_TRAIN, True) # Will return 32 random elements
-# with tf.Session() as sess:
-#     first_batch = sess.run(next_batch)
-# print(first_batch)
+    print(confusion_matrix_to_Print)
 
 
