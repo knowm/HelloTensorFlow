@@ -10,7 +10,7 @@
 
 ## PyDev in Eclipse
 
-1. Create a workspace pointing to `workspace_tf`.
+1. Create an eclipse workspace that will be used to import `workspace_tf`.
 1. Install PyDev in Eclipse. `Help ==> Install new Software`... Click on `Add…` then `PyDev` in `Name` and `http://pydev.org/updates/` in `Location`. Select `PyDev` and click through the wizard. 
 1. Configure PyDev in Eclipse preferences to point to installed Python executable. Go to `Eclipse ==> Preferences ==> PyDev ==> Interpreter - Python` Select `New`, set `python3` and `/usr/local/bin/python3`
 
@@ -20,26 +20,34 @@
 1. PyDev ==> PyDev Project ==> Next
 1. Uncheck 'Use Default'
 1. Browse to project Directory
-1. Copypasta Project Name
-1. Next
+1. Type 'HelloTensorFlow' for Project Name
+1. Click 'Finish'
 
 ### Test Python in Eclipse
 
-1. Right-click `src/hellopy.py` ==> Run As ==> Python Run
+Right-click `src/hellopy.py` ==> Run As ==> Python Run
 
 ```
 if __name__ == '__main__':
     print('Hello World')
 ```
 
+*Consol Output:*
+
 ```
 Hello World
 ```
 
-## Tensorflow
+## Install Tensorflow
+
 ```
     pip3 install --upgrade tensorflow
 ```
+
+note: If pip3 has not been installed after executing `brew install python3`, run:
+
+`brew postinstall python3`
+
 
 ### Test TensorFlow in Eclipse
 
