@@ -83,7 +83,7 @@ b'Hello, World'
 ## Some Possible Issues
 
 1. `AttributeError: module 'enum' has no attribute 'IntFlag'` ==> run ` pip3 uninstall enum34`
-1. `RuntimeWarning: compiletime version 3.5 of module 'tensorflow.python.framework.fast_tensor_util' does not match runtime version 3.6` ==> Just igmore the warning
+1. `RuntimeWarning: compiletime version 3.5 of module 'tensorflow.python.framework.fast_tensor_util' does not match runtime version 3.6` ==> Just ignore the warning
 1. `Your CPU supports instructions that this TensorFlow binary was not compiled to use: SSE4.1 SSE4.2 AVX AVX2 FMA` ==> You need to compile TF yourself with the appropriate flags to leverage advanced CPU instructions. Just ignore.
 
 ## MNIST from `Tensorflow/models`
@@ -115,8 +115,19 @@ Open [http://localhost:6006](http://localhost:6006) in browser to view tensorboa
 After training and monitoring on tensorboard:
  
 ```
-python3 cifar10_eval.py
+cd ~/path_to/workspace_tf
+python3 models/tutorials/image/cifar10/cifar10_eval.py
 ```
+
+should yield a consol output like:
+
+```
+2018-01-15 13:22:36.844078: precision @ 1 = 0.803
+2018-01-15 13:27:47.173989: precision @ 1 = 0.803
+2018-01-15 13:32:58.397531: precision @ 1 = 0.804
+etc
+```
+
 
 ## Results on Mac (CPU only)
 
@@ -126,6 +137,20 @@ python3 cifar10_eval.py
 | RAM | Apple 8GB DDR3 1867 MHz 2 core |
 
 Running 5000 steps on the CPU took 57 minutes.
+
+## Possible Issues
+
+If you receive an error like this:
+
+```
+ValueError: Failed to find file: /tmp/cifar10_data/cifar-10-batches-bin/data_batch_1.bin
+```
+
+it may be due to a corrupted data file after canceling (ctrl+c) a previous run attempt. Delete the /tmp/cifar10_data file and start again. If you can't see the /tmp files, enable viewing of hidden files by: 
+
+```
+defaults write com.apple.finder AppleShowAllFiles YES
+```
 
 
 
