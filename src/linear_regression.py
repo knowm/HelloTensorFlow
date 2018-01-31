@@ -42,8 +42,8 @@ plt.draw()
 samples_number = price_data_n.size
 
 # TF graph input
-X = tf.placeholder(tf.float32)
-Y = tf.placeholder(tf.float32)
+X = tf.placeholder(tf.float32,name="X")
+Y = tf.placeholder(tf.float32,name="Y")
 
 # Create a model
 
@@ -60,6 +60,8 @@ model = tf.add(tf.multiply(X, W), b) #y=mx+b
 
 # Minimize squared errors
 cost_function = tf.reduce_sum(tf.pow(model - Y, 2))/(2 * samples_number) #L2 loss
+tf.summary.scalar('cost', cost_function)
+
 optimizer = tf.train.GradientDescentOptimizer(learning_rate).minimize(cost_function) #Gradient descent
 
 # Initialize variables
@@ -67,14 +69,21 @@ init = tf.initialize_all_variables()
 
 # Launch a graph
 with tf.Session() as sess:
+    summaryMerged = tf.summary.merge_all()
+    filename="/tmp/linear_regression/dir3"
+    writer = tf.summary.FileWriter(filename, sess.graph)
+    tf.global_variables_initializer().run()
+    
     sess.run(init)
 
     display_step = 20
     # Fit all training data
+    i=0
     for iteration in range(training_iteration):
         for (x, y) in zip(size_data_n, price_data_n):
-            sess.run(optimizer, feed_dict={X: x, Y: y})
-
+            _,sumOut=sess.run([optimizer,summaryMerged], feed_dict={X: x, Y: y})
+            writer.add_summary(sumOut,i)##no global step??
+            i+=1
         # Display logs per iteration step
         if iteration % display_step == 0:
             print("Iteration:", '%04d' % (iteration + 1), "cost=", "{:.9f}".format(sess.run(cost_function, feed_dict={X:size_data_n, Y:price_data_n})),\

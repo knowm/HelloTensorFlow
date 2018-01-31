@@ -32,11 +32,19 @@ The following 5 python (`*.py`) files are located in `src` and were adapted from
 1. matrices.py
 1. linear_regression.py
 
-Linear Regression fits a line to a smattering of continuous X-Y values. At each iteration, the STG method is used along with the least squared error cost function. In this exanple the data is first normalized.
+Linear Regression fits a line to a smattering of continuous X-Y values. At each iteration, the STG method is used along with the least squared error cost function. In this example the data is first normalized.
 
 1. [Source for TF basics](https://blog.altoros.com/basic-concepts-and-manipulations-with-tensorflow.html)
 1. [Source for linear regression](https://blog.altoros.com/using-linear-regression-in-tensorflow.html)
 1. [Placeholders](https://www.tensorflow.org/versions/r0.12/api_docs/python/io_ops/placeholders)
+
+
+You may need to install the matplotlib library:
+
+```
+pip3 install matplotlib
+```
+
 
 ## Continuation
 
