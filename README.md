@@ -23,28 +23,22 @@ TODO
 
 ## TF Walkthrough
 
-The following 5 python (`*.py`) files are located in `src` and were adapted from  [blog.altoros.com](https://blog.altoros.com).
+The following 5 python (`*.py`) files are located in `src` and were adapted from  [Basic Concepts and Manipulations with TensorFlow](https://blog.altoros.com/basic-concepts-and-manipulations-with-tensorflow.html). Reading the blog post, going through the code and comments and running the programs will familiarize you with the simplest Tensorflow concepts.
 
-1. contants.py
-1. contantsmatrix.py
-1. variables.py
-1. matrices.py
-1. linear_regression.py
+1. [contants.py](https://github.com/knowm/HelloTensorFlow/blob/master/src/contants.py)
+1. [contantsmatrix.py](https://github.com/knowm/HelloTensorFlow/blob/master/src/constantsmatrix.py)
+1. [variables.py](https://github.com/knowm/HelloTensorFlow/blob/master/src/variables.py)
+1. [matrices.py](https://github.com/knowm/HelloTensorFlow/blob/master/src/matrices.py)
 
-Linear Regression fits a line to a smattering of continuous X-Y values. At each iteration, the STG method is used along with the least squared error cost function. In this example the data is first normalized.
+Linear Regression fits a line to a smattering of continuous X-Y values. At each iteration, the STG method is used along with the least squared error cost function. In this example the data is first normalized. `linear_regression.py` was adapted from [Using Linear Regression in TensorFlow](https://blog.altoros.com/using-linear-regression-in-tensorflow.html). Also see: [Tensorflow API docs for Placeholders](https://www.tensorflow.org/versions/r0.12/api_docs/python/io_ops/placeholders)
 
-1. [Source for TF basics](https://blog.altoros.com/basic-concepts-and-manipulations-with-tensorflow.html)
-1. [Source for linear regression](https://blog.altoros.com/using-linear-regression-in-tensorflow.html)
-1. [Placeholders](https://www.tensorflow.org/versions/r0.12/api_docs/python/io_ops/placeholders)
-
+1. [linear_regression.py](https://github.com/knowm/HelloTensorFlow/blob/master/src/linear_regression.py)
 
 You may need to install the matplotlib library:
 
 ```
 pip3 install matplotlib
 ```
-
-
 ## Continuation
 
 At this point we can leverage the project called [TensorFlow-Examples](https://github.com/aymericdamien/TensorFlow-Examples) to learn more M.L. in Tensorflow concepts. Go ahead and clone that repo and try running some of the examples either in the console or in Eclipse.
