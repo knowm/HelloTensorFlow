@@ -11,7 +11,6 @@ Before walking through this README, take the time to read the `Dev4Windows.md` o
 ### MacOS
 
 1. Dev4MacOS.md
-1. CompileTF4MacOS.md
 
 ### Windows 10
 
@@ -236,13 +235,14 @@ This code will emit runtime statistics for every 100th step starting at step 99.
 
 1. [Source and Code](https://www.tensorflow.org/get_started/graph_viz)
 
-### A video to Watch 
+### A Video to Watch 
 
 [Hands-on TensorBoard (TensorFlow Dev Summit 2017)](https://www.youtube.com/watch?v=eBbEDRsCmv4)
 
-We can do some amazing data mining, insight and comparison with TensorBoard. Also, we should be able to debug stuff like Nans Infs and Tensor shapes and data soon if not yet already.
+We can do some amazing data mining, insight and comparison with TensorBoard. Also, we should be able to debug stuff like Nans, Infs and Tensor shapes and data soon if not yet already.
 
 ## Advanced Examples from [TensorFlow-Examples](https://github.com/aymericdamien/TensorFlow-Examples)
 
 1. `build_an_image_dataset.py` - create a custom image dataset.
 1. `multigpu_basics.py` - how to assign different parts of the graph to different GPUs.
+

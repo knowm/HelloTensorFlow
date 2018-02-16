@@ -1,4 +1,5 @@
 import os
+import csv
 
 import six.moves.urllib.request as request
 import tensorflow as tf
@@ -14,7 +15,7 @@ assert "1.4" <= tf_version, "TensorFlow r1.4 or later is needed"
 
 
 # Windows users: You only need to change PATH, rest is platform independent
-PATH = "/tmp/tf_iris_knowm_1"
+PATH = "/tmp/tf_iris_custom"
 
 # Fetch and store Training and Test dataset files
 PATH_DATASET = PATH + os.sep + "dataset"
@@ -34,8 +35,6 @@ def downloadDataset(url, file):
             f.close()
 downloadDataset(URL_TRAIN, FILE_TRAIN)
 downloadDataset(URL_TEST, FILE_TEST)
-
-tf.logging.set_verbosity(tf.logging.INFO)
 
 # The CSV features in our training & test data
 feature_names = [
@@ -71,7 +70,7 @@ feature_names = [
 # Then provide the results to the Estimator API
 def my_input_fn(file_path, repeat_count=1, shuffle_count=1):
     def decode_csv(line):
-        parsed_line = tf.decode_csv(line, [[0.], [0.], [0.], [0.], [0]])
+        parsed_line = tf.decode_csv(line, record_defaults =[[0.], [0.], [0.], [0.], [0]])
         label = parsed_line[-1]  # Last element is the label
         del parsed_line[-1]  # Delete last element
         features = parsed_line  # Everything but last elements are the features
@@ -192,20 +191,22 @@ def my_model_fn(
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
 # Create a custom estimator using my_model_fn to define the model
 classifier = tf.estimator.Estimator(
     model_fn=my_model_fn,
     model_dir=PATH)  # Path to where checkpoints etc are stored
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -217,16 +218,6 @@ classifier.train(
 
 
 
-# Evaluate our model using the examples contained in FILE_TEST
-# Return value will contain evaluation_metrics such as: loss & average_loss
-evaluate_result = classifier.evaluate(input_fn=lambda: my_input_fn(FILE_TEST, 1))
-tf.logging.info("Evaluate results")
-for key in evaluate_result:
-    tf.logging.info("   {}, was: {}".format(key, evaluate_result[key]))
-
-
-
-
 
 # Evaluate our model using the examples contained in FILE_TEST
 # Evaluate accuracy.
@@ -234,3 +225,29 @@ accuracy_score = classifier.evaluate(input_fn=lambda: my_input_fn(FILE_TEST, 1))
 print("\nTest Accuracy: {0:f}\n".format(accuracy_score))
 
 
+
+
+
+
+
+predictions = list(classifier.predict(input_fn=lambda: my_input_fn(FILE_TEST)))
+# print(predictions)
+
+predicted_classes = [p["class_ids"] for p in predictions]
+print(
+    "Test Samples, Class Predictions:    {}\n"
+    .format(predicted_classes))
+
+# truth labels
+with open(FILE_TEST,'r') as f:
+    lines = f.readlines()[1:]
+    reader = csv.reader(lines, delimiter=',')
+    truth_labels = [int(row[-1]) for row in reader]
+print(
+    "Test Samples, Class Truth Labels:    {}\n"
+    .format(truth_labels))
+
+with tf.Session() as sess:
+    confusion_matrix = tf.confusion_matrix(labels=truth_labels, predictions=predicted_classes, num_classes=3)
+    confusion_matrix_to_Print = sess.run(confusion_matrix)
+    print(confusion_matrix_to_Print)

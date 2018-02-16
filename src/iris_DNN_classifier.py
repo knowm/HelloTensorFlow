@@ -113,10 +113,7 @@ print("\nTest Accuracy: {0:f}\n".format(accuracy_score))
 
 
 predictions = list(classifier.predict(input_fn=lambda: my_input_fn(FILE_TEST, False, 1)))
-# print(
-#     "Test Samples, Raw Predictions:    {}\n"
-#     .format(predictions))
-
+# print(predictions)
 
 predicted_classes = [p["class_ids"][0] for p in predictions]
 print(
